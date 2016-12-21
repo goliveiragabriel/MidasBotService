@@ -44,7 +44,7 @@ public class EchoDialog : IDialog<object>
         else
         {
             // criar requisicao com message.Text e posta o resultado
-            string result = Employee.GetDays(message.Text);
+            string result = await Employee.GetDays(message.Text);
             await context.PostAsync(result);
             context.Wait(MessageReceivedAsync);
         }
