@@ -1,4 +1,3 @@
-#load "Utils.csx"
 #load "Employee.csx"
 
 using System;
@@ -30,9 +29,9 @@ public class EmployeeDialog : LuisDialog<object>
     {
         if(result.Entities != null && result.Entities.Count > 0) 
         {
-            string result = result.Entities[0].Entity;
+            string results = result.Entities[0].Entity;
             //context.ConversationData.SetValue<string>("");
-            await context.PostAsync(await Employee.GetDays(result));
+            await context.PostAsync(await Employee.GetDays(results));
         }
         context.Wait(MessageReceived);
     }
