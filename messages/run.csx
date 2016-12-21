@@ -16,7 +16,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
     log.Info($"Webhook was triggered!");
 
     // Initialize the azure bot
-    using (BotService.Initialize())
+    using (AzureBot.Initialize())
     {
         // Deserialize the incoming activity
         string jsonContent = await req.Content.ReadAsStringAsync();
