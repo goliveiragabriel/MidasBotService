@@ -17,7 +17,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-[LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01", "04d1b2968c6a44e79dd9a3ec2cb6e313 ", LuisApiVersion.V2)]
+[LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01", "43f83a53d85144409c50edeedc8b9a9b ", LuisApiVersion.V2)]
 [Serializable]
 public class EmployeeDialog : LuisDialog<object> 
 {
