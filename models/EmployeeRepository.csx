@@ -11,7 +11,7 @@ public class EmployeeRepository
     public EmployeeCollection GetEmployees() 
     {
         EmployeeCollection collection = new EmployeeCollection();
-        collection = JsonConvert.DeserializeObject<EmployeeCollection>(File.ReadAllText(@"..\employees.json"));
+        collection = JsonConvert.DeserializeObject<EmployeeCollection>(File.ReadAllText(@"employees.json"));
         return collection;
     }
 }
