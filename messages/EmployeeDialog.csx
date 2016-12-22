@@ -39,5 +39,4 @@ public class EmployeeDialog : LuisDialog<object>
         }
         context.Wait(MessageReceived);
     }
-  }
 }
