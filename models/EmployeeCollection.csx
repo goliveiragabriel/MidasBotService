@@ -10,5 +10,5 @@ using Newtonsoft.Json;
 public class EmployeeCollection 
 {
     [XmlArray("EmployeeCollection"), XmlArrayItem(typeof(Employee), ElementName = "Employee")]
-    List<EmployeeInfo> Employees { get; set; }
+    public List<EmployeeInfo> Employees { get; set; }
 }
