@@ -39,47 +39,5 @@ public class EmployeeDialog : LuisDialog<object>
         }
         context.Wait(MessageReceived);
     }
-}
-
-[Serializable]
-public sealed class LuisServiceHost : ILuisService 
-{
-    private readonly ILuisModel model;
-    public LuisService(ILuisModel model)
-    {
-        this.model = model;
-    }
-
-    public static readonly Uri UriBase = new Uri("https://api.projectoxford.ai/luis/v2/application");
- 
-    Uri ILuisService.BuildUri(string text)
-    {
-        var id = HttpUtility.UrlEncode(this.model.ModelID);
-        var sk = HttpUtility.UrlEncode(this.model.SubscriptionKey);
-        var q = HttpUtility.UrlEncode(text);
-
-        var builder = new UriBuilder(UriBase);
-        builder.Query = $"id={id}&subscription-key={sk}&q={q}";
-        return builder.Uri;
-    }
-
-    async Task<LuisResult> ILuisService.QueryAsync(Uri uri, CancellationToken token)
-    {
-        string json;
-        using (var client = new HttpClient())
-        using (var response = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead, token))
-        {
-            json = await response.Content.ReadAsStringAsync();
-        }
-
-        try
-        {
-            var result = JsonConvert.DeserializeObject<LuisResult>(json);
-            return result;
-        }
-        catch (JsonException ex)
-        {
-            throw new ArgumentException("Unable to deserialize the LUIS response.", ex);
-        }
-    }
+  }
 }
