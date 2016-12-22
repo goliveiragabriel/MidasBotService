@@ -51,7 +51,7 @@ public sealed class LuisServiceHost : ILuisService
     async Task<LuisResult> ILuisService.QueryAsync(Uri uri, CancellationToken token) 
     {
         var builder = new UriBuilder(uri);
-        builder.Host = GetEnv("LuisAPIHostName") ?? "api.projectoxfor.ai";
+        builder.Host = "api.projectoxfor.ai";
         return await this.service.QueryAsync(builder.Uri, token);
     } 
 
