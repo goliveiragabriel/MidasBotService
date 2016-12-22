@@ -1,10 +1,11 @@
-<EmployeeCollection>
-    <EmployeeInfo>
-        <Name>Jonatas</Name>
-        <AdmissionDate>2005-13-12</AdmissionDate>
-    </EmployeeInfo>
-    <EmployeeInfo>
-        <Name>Gabriel</Name>
-        <AdmissionDate>2013-10-01</AdmissionDate>
-    </EmployeeInfo>
-<EmployeeCollection>
+<?xml version="1.0"?>
+<EmployeeCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Employee>
+    <Name>Gabriel</Name>
+    <AdmissionDate>2013-10-01T08:00:00.9498307-02:00</AdmissionDate>
+  </Employee>
+  <Employee>
+    <Name>Jonatas</Name>
+    <AdmissionDate>2005-12-05T08:00:00.0968439-02:00</AdmissionDate>
+  </Employee>
+</EmployeeCollection>ion>

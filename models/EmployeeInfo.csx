@@ -2,10 +2,14 @@ using System;
 using System.Xml;
 using System.Text;
 using Newtonsoft.Json;
+using System.Xml.Serialization;
 
+[XmlRoot]
 public class EmployeeInfo
 {
-    public string Name {get;set;}
+    [XmlElement]
+    public string Name { get; set; }
 
-    public DateTime AdmissionDate {get;set;}
+    [XmlElement]
+    public DateTime AdmissionDate { get; set; }
 }

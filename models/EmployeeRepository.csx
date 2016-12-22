@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using System.IO;
+using System.IO.File;
 
 public class EmployeeRepository 
 {
@@ -13,9 +14,10 @@ public class EmployeeRepository
     {
         EmployeeCollection collection = new EmployeeCollection();
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(EmployeeCollection));
-        using(FileStream fs = new FileStream(@"..\employes.xml", FileMode.Open))
+        byte[] file = File.ReadAllBytes(@"..\employes.xml");
+        using (MemoryStream ms = new MemoryStream(file))
         {
-            xmlSerializer.Serialize(fs, collection);
+            collection = xmlSerializer.Deserialize(ms) as EmployeeCollection;
         }
         return collection;
     }
