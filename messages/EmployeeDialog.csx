@@ -55,7 +55,7 @@ public sealed class LuisServiceHost : ILuisService
         return await this.service.QueryAsync(builder.Uri, token);
     } 
 
-    Uri ILuisService.BuildUri(LuistResult text) 
+    Uri ILuisService.BuildUri(LuisResult text) 
     {
         return this.service.BuildUri(text);
     } 	
