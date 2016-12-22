@@ -1,5 +1,3 @@
-#r "MidasBotService"
-
 using System;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +5,9 @@ using System.Xml;
 using System.Collections.Generic;
 using System.Linq;
 
+#load "../models/EmployeeRepository.csx" 
+#load "../models/EmployeeCollection.csx"
+#load "../models/EmployeeInfo.csx"
 
 class Employee {
     
