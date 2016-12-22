@@ -27,7 +27,7 @@ public class EmployeeDialog : LuisDialog<object>
     }
 
     [LuisIntent("DaysInCompany")]
-    public async Task GetDays(IDialogContext context, LuisResult result) 
+    public async Task DaysInCompany(IDialogContext context, LuisResult result) 
     {
         if(result.Entities != null && result.Entities.Count > 0) 
         {
