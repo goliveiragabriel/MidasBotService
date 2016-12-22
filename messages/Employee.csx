@@ -1,6 +1,6 @@
-#load "EmployeeRepository.csx"
-#load "EmployeeCollection.csx"
-#load "EmployeeInfo.csx"
+#load "models/EmployeeRepository.csx"
+#load "models/EmployeeCollection.csx"
+#load "models/EmployeeInfo.csx"
 
 using System;
 using System.Text;
