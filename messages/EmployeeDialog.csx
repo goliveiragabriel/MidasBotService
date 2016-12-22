@@ -47,7 +47,7 @@ public sealed class LuisServiceHost : ILuisService
     private readonly ILuisModel model;
     public LuisService(ILuisModel model)
     {
-        SetField.NotNull(out this.model, nameof(model), model);
+        this.model = model;
     }
 
     public static readonly Uri UriBase = new Uri("https://api.projectoxford.ai/luis/v2/application");
