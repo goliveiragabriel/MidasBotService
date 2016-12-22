@@ -1,13 +1,10 @@
-#load "../models/EmployeeRepository.csx"
-#load "../models/EmployeeCollection.csx"
-#load "../models/EmployeeInfo.csx"
-
 using System;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Collections.Generic;
 using System.Linq;
+using MidasBotService;
 
 class Employee {
     
