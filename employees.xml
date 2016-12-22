@@ -1,0 +1,10 @@
+<EmployeeCollection>
+    <Employee>
+        <Name>Jonatas</Name>
+        <AdmissionDate>2005-13-12</AdmissionDate>
+    </Employee>
+    <Employee>
+        <Name>Gabriel</Name>
+        <AdmissionDate>2013-10-01</AdmissionDate>
+    </Employee>
+<EmployeeCollection>
