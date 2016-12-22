@@ -1,10 +1,10 @@
+#load "EmployeeCollection.csx"
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using Newtonsoft.Json;
-
-#load "EmployeeCollection.csx"
 
 public class EmployeeRepository 
 {
