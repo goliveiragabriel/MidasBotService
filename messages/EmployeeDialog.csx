@@ -19,11 +19,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
-//[LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01", "43f83a53d85144409c50edeedc8b9a9b", LuisApiVersion.V2)]
+[LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01", "43f83a53d85144409c50edeedc8b9a9b", LuisApiVersion.V2)]
 [Serializable]
 public class EmployeeDialog : LuisDialog<object> 
 {
-    public EmployeeDialog () : base(new LuisServiceHost((new LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01","43f83a53d85144409c50edeedc8b9a9b"))))
+    public EmployeeDialog () //: base(new LuisServiceHost((new LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01","43f83a53d85144409c50edeedc8b9a9b"))))
     {
       
     }
