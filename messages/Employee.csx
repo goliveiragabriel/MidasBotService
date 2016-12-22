@@ -15,7 +15,7 @@ class Employee {
     {
         EmployeeRepository repository = new EmployeeRepository();
         EmployeeCollection collection = repository.GetEmployees();
-        EmployeeInfo employee = collection.Employees.Find(p => p.Name == name);
+        EmployeeInfo employee = collection.Employee.Find(p => p.Name == name);
         if ( employee == null ) 
         {
             return string.Format("Poxa! Não consegui encontrar o colaborador {0}", name);
