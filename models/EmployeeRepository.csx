@@ -10,7 +10,7 @@ public class EmployeeRepository
 {
     public EmployeeCollection GetEmployees() 
     {
-        EmployeeCollection collection = new EmployeCollection();
+        EmployeeCollection collection = new EmployeeCollection();
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(EmployeeCollection));
         using(FileStream fs = new FileStream("..\employes.xml"))
         {
