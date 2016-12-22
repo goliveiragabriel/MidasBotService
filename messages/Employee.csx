@@ -1,3 +1,7 @@
+#load "EmployeeRepository.csx"
+#load "EmployeeCollection.csx"
+#load "EmployeeInfo.csx"
+
 using System;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +16,7 @@ class Employee {
         // 13 de Dezembro de 2005
         EmployeeRepository repository = new EmployeeRepository();
         EmployeeCollection collection = repository.getEmployees();
-        Employee employee = collection.Find(p => p.Name == name);
+        EmployeeInfo employee = collection.Find(p => p.Name == name);
         if ( employee == null ) 
         {
             return string.Format("Poxa! Não consegui encontrar o colaborador {0}", name);
