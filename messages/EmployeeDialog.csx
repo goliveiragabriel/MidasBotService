@@ -65,15 +65,16 @@ public class EmployeeDialog : LuisDialog<object>
     {
         string strRet = string.Empty;
         string strName = string.Empty;
-        if(!context.ConversationData.TryGetValue("LastRamal", out strName)) 
+        if(result.Entities != null && result.Entities.Count > 0) 
         {
-            strRet = "Eu não tenho um último ramal para informar.";
-        }        
+            string results = result.Entities[0].Entity;
+            context.ConversationData.SetValue<string>("LastRamal", results);
+            await context.PostAsync(await Ramal.GetByName(results));
+        }
         else 
         {
-            strRet = await Ramal.GetByName(strName);
-        }
-        await context.PostAsync(strRet);
+            await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse. :(");
+        }        
         context.Wait(MessageReceived);
     }
 
