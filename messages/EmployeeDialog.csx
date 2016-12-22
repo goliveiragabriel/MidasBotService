@@ -65,7 +65,7 @@ public class EmployeeDialog : LuisDialog<object>
     {
         string strRet = string.Empty;
         string strName = string.Empty;
-        if(!context.ConversationData.TryGetValue("LastRamal", out strRamal)) 
+        if(!context.ConversationData.TryGetValue("LastRamal", out strName)) 
         {
             strRet = "Eu não tenho um último ramal para informar.";
         }        
