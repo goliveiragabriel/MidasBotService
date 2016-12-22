@@ -50,12 +50,30 @@ public class EmployeeDialog : LuisDialog<object>
         if(result.Entities != null && result.Entities.Count > 0) 
         {
             string results = result.Entities[0].Entity;
+            context.ConversationData.SetValue<string>("LastRamal", results);
             await context.PostAsync(await Ramal.GetByName(results));
         }
         else 
         {
             await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse. :(");
         }        
+        context.Wait(MessageReceived);
+    }
+
+    [LuisIntent("RepeatLastRamal")]
+    public async Task RepeatLastRamal(IDialogContext context, LuisResult result) 
+    {
+        string strRet = string.Empty;
+        string strName = string.Empty;
+        if(!context.ConversationData.TryGetValue("LastRamal", out strRamal)) 
+        {
+            strRet = "Eu não tenho um último ramal para informar.";
+        }        
+        else 
+        {
+            strRet = await Ramal.GetByName(strName);
+        }
+        await context.PostAsync(strRet);
         context.Wait(MessageReceived);
     }
 
@@ -72,5 +90,12 @@ public class EmployeeDialog : LuisDialog<object>
         }        
         context.Wait(MessageReceived);
     }
+
+    [LuisIntent("None")]
+    public async Task None(IDialogContext context, LuisResult result) 
+    {
+        await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse. :(");
+        context.Wait(MessageReceived);
+    } 
     
 }
