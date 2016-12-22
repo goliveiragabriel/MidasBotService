@@ -2,6 +2,7 @@
 
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading;
 using Newtonsoft.Json;
 using Autofac;
@@ -16,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 
 //[LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01", "43f83a53d85144409c50edeedc8b9a9b", LuisApiVersion.V2)]
 [Serializable]
@@ -42,21 +44,42 @@ public class EmployeeDialog : LuisDialog<object>
 [Serializable]
 public sealed class LuisServiceHost : ILuisService 
 {
-    private readonly ILuisService service;
-    public LuisServiceHost (ILuisService service)
+    private readonly ILuisModel model;
+    public LuisService(ILuisModel model)
     {
-      this.service = service;
+        SetField.NotNull(out this.model, nameof(model), model);
     }
 
-    async Task<LuisResult> ILuisService.QueryAsync(Uri uri, CancellationToken token) 
+    public static readonly Uri UriBase = new Uri("https://api.projectoxford.ai/luis/v2/application");
+ 
+    Uri ILuisService.BuildUri(string text)
     {
-        var builder = new UriBuilder(uri);
-        builder.Host = "api.projectoxfor.ai";
-        return await this.service.QueryAsync(builder.Uri, token);
-    } 
+        var id = HttpUtility.UrlEncode(this.model.ModelID);
+        var sk = HttpUtility.UrlEncode(this.model.SubscriptionKey);
+        var q = HttpUtility.UrlEncode(text);
 
-    Uri ILuisService.BuildUri(LuisResult text) 
+        var builder = new UriBuilder(UriBase);
+        builder.Query = $"id={id}&subscription-key={sk}&q={q}";
+        return builder.Uri;
+    }
+
+    async Task<LuisResult> ILuisService.QueryAsync(Uri uri, CancellationToken token)
     {
-        return this.service.BuildUri(text);
-    } 	
+        string json;
+        using (var client = new HttpClient())
+        using (var response = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead, token))
+        {
+            json = await response.Content.ReadAsStringAsync();
+        }
+
+        try
+        {
+            var result = JsonConvert.DeserializeObject<LuisResult>(json);
+            return result;
+        }
+        catch (JsonException ex)
+        {
+            throw new ArgumentException("Unable to deserialize the LUIS response.", ex);
+        }
+    }
 }
