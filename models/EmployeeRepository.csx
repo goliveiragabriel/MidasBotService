@@ -12,7 +12,7 @@ public class EmployeeRepository
     {
         EmployeeCollection collection = new EmployeeCollection();
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(EmployeeCollection));
-        using(FileStream fs = new FileStream("..\employes.xml"))
+        using(FileStream fs = new FileStream(@"..\employes.xml"))
         {
             xmlSerializer.Serialize(fs, collection);
         }
