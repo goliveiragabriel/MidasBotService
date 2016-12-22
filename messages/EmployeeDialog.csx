@@ -37,6 +37,9 @@ public class EmployeeDialog : LuisDialog<object>
             //context.ConversationData.SetValue<string>("");
             await context.PostAsync(await Employee.GetDays(results));
         }
+        else {
+            await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse!");
+        }
         context.Wait(MessageReceived);
     }
 }
