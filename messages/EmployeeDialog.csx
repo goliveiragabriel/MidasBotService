@@ -54,7 +54,7 @@ public class EmployeeDialog : LuisDialog<object>
         }
         else 
         {
-            await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse!");
+            await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse. :(");
         }        
     }
 }
