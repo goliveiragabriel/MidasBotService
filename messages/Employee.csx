@@ -4,17 +4,15 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Collections.Generic;
 using System.Linq;
-using MidasBotService.Repository;
-using MidasBotService.Models;
 
 class Employee {
     
     public static async Task<string> GetDays(string name)
     {
         // 13 de Dezembro de 2005
-        EmployeeRepository repository = new EmployeeRepository();
-        EmployeeCollection collection = repository.getEmployees();
-        Employee employee = collection.Find(p => p.Name == name);
+        MidasBotService.Repository.EmployeeRepository repository = new MidasBotService.Repository.EmployeeRepository();
+        MidasBotService.Models.EmployeeCollection collection = repository.getEmployees();
+        MidasBotService.Models.Employee employee = collection.Find(p => p.Name == name);
         if ( employee == null ) 
         {
             return string.Format("Poxa! Não consegui encontrar o colaborador {0}", name);
