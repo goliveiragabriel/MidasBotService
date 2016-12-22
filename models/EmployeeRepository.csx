@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.IO.File;
 using Newtonsoft.Json;
 
 public class EmployeeRepository 
@@ -11,7 +12,7 @@ public class EmployeeRepository
     public EmployeeCollection GetEmployees() 
     {
         EmployeeCollection collection = new EmployeeCollection();
-        collection = JsonConvert.DeserializeObject<EmployeeCollection>(@"..\employees.json");
+        collection = JsonConvert.DeserializeObject<EmployeeCollection>(File.ReadAllText(@"..\employees.json"));
         return collection;
     }
 }
