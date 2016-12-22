@@ -54,4 +54,9 @@ public sealed class LuisServiceHost : ILuisService
         builder.Host = GetEnv("LuisAPIHostName") ?? "api.projectoxfor.ai";
         return await this.service.QueryAsync(builder.Uri, token);
     } 
+
+    Uri ILuisService.BuildUri(string text) 
+    {
+        return this.service.BuildUri(text);
+    } 	
 }
