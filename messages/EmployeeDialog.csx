@@ -17,11 +17,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-[LuisModel("3f3050ba-d69c-462a-a7ee-ca9396e3035f", "43f83a53d85144409c50edeedc8b9a9b ", LuisApiVersion.V2)]
+[LuisModel("b5f63b2d-fc34-41b0-8a07-f1fa28b55395", "43f83a53d85144409c50edeedc8b9a9b", LuisApiVersion.V2)]
 [Serializable]
 public class EmployeeDialog : LuisDialog<object> 
 {
-    public EmployeeDialog ()
+    public EmployeeDialog () 
     {
       
     }
