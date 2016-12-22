@@ -13,7 +13,6 @@ class Employee {
     
     public static async Task<string> GetDays(string name)
     {
-        // 13 de Dezembro de 2005
         EmployeeRepository repository = new EmployeeRepository();
         EmployeeCollection collection = repository.GetEmployees();
         EmployeeInfo employee = collection.Employees.Find(p => p.Name == name);
