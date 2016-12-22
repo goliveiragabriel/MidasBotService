@@ -23,7 +23,7 @@ using System.Web;
 [Serializable]
 public class EmployeeDialog : LuisDialog<object> 
 {
-    public EmployeeDialog () : base(new LuisServiceHost(new LuisService(new LuisModelAttribute("3ca36565-7dab-4db1-960d-c4fbdb13cb01","43f83a53d85144409c50edeedc8b9a9b"))))
+    public EmployeeDialog () : base(new LuisServiceHost((new LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01","43f83a53d85144409c50edeedc8b9a9b"))))
     {
       
     }
