@@ -1,4 +1,5 @@
 #load "Employee.csx"
+#load "Ramal.csx"
 
 using System;
 using System.Net;
@@ -41,5 +42,19 @@ public class EmployeeDialog : LuisDialog<object>
             await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse!");
         }
         context.Wait(MessageReceived);
+    }
+
+    [LuisIntent("GetRamal")]
+    public async Task GetRamal(IDialogContext context, LuisResult result) 
+    {
+        if(result.Entities != null && result.Entities.Count > 0) 
+        {
+            string results = result.Entities[0].Entity;
+            await context.PostAsync(await Ramal.GetByName(results));
+        }
+        else 
+        {
+            await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse!");
+        }        
     }
 }

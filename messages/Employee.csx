@@ -19,7 +19,7 @@ class Employee {
         EmployeeInfo employee = collection.Employee.Find(p => p.Name.ToLower() == name.ToLower());
         if ( employee == null ) 
         {
-            return string.Format("Poxa! Não consegui encontrar o colaborador {0} {1}", name, collection.Employee.Count);
+            return string.Format("Poxa! Não consegui encontrar o colaborador {0}.  Pergunte-me sobre outros colaboradores", name);
         }
         TimeSpan diff = DateTime.Now.Subtract(employee.AdmissionDate);
         return string.Format("Fazem {0} dias {1} horas {2} minutos {3} segundos, que o {4} trabalha na Midas", diff.Days, diff.Hours, diff.Minutes, diff.Seconds, name);
