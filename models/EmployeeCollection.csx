@@ -6,9 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-[Serializable]
+[XmlType("EmployeeCollection")]
 public class EmployeeCollection 
 {
-    [XmlArray("EmployeeCollection"), XmlArrayItem(typeof(Employee), ElementName = "Employee")]
+    [XmlArray("EmployeeCollection")]
+    [XmlArrayItem("Employee")]
     public List<EmployeeInfo> Employees { get; set; }
 }
