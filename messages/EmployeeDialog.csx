@@ -58,4 +58,19 @@ public class EmployeeDialog : LuisDialog<object>
         }        
         context.Wait(MessageReceived);
     }
+
+    [LuisIntent("WhatCanYouDo")]
+    public async Task WhatCanYouDo(IDialogContext context, LuisResult result) 
+    {
+        if(result.Entities != null && result.Entities.Count > 0) 
+        {
+            await context.PostAsync("Olá, por enquanto eu posso: listar os ramais, e outras coisinhas mais. Sobre o que posso te ajudar?");
+        }
+        else 
+        {
+            await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse. :(");
+        }        
+        context.Wait(MessageReceived);
+    }
+    
 }
