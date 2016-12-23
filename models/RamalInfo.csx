@@ -4,12 +4,9 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
 
-[XmlRoot]
-public class EmployeeInfo
+public class RamalInfo
 {
-    [XmlElement]
     public string Name { get; set; }
 
-    [XmlElement]
-    public DateTime AdmissionDate { get; set; }
+    public string Number { get; set; }
 }
