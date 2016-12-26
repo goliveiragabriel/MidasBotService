@@ -26,7 +26,7 @@ using System.Web;
 public class EmployeeDialog : LuisDialog<object> 
 {
 
-    public const string Entity_Date = "builtin.alarm.start_date";
+    public const string Entity_Date = "builtin.datetime.date";
 
     public EmployeeDialog () //: base(new LuisServiceHost((new LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01","43f83a53d85144409c50edeedc8b9a9b"))))
     {
