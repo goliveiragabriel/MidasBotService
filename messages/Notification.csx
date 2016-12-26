@@ -14,11 +14,11 @@ class Notification
     {
         NotificationRepository repository = new NotificationRepository();
         List<NotificationInfo> lst = repository.GetNotifications();
-        NotificationInfo notificationInfo = lst.Where(p => p.Text.ToLower().Contains(name.ToLower() && (date == DateTime.MinValue || p.CreatedDate == date ) ).Last();
+        NotificationInfo notificationInfo = lst.Where(p => p.Text.ToLower().Contains(name.ToLower()) && (date == DateTime.MinValue || p.CreatedDate.Date == date.Date ) ).Last();
         if ( notificationInfo == null ) 
         {
-            return string.Format("Infelizmente não temos nenhuma novidade do colaborador {0}", name); 
+            return string.Format("Infelizmente não temos nenhuma novidade do colaborador {0} para o dia {1}", name, date.ToString("dd/MM/yyyy")); 
         }
-        return string.Format("{0}", notificationInfo.Text);
+        return string.Format("{0} - {1}", notificationInfo.Text, date.ToString("dd/MM/yyyy"));
     }
 }
