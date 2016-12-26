@@ -11,7 +11,7 @@ public class NotificationRepository
 {
     private readonly string url = @"http://midasbotapi20161226074422.azurewebsites.net/api/Notifications";
 
-    public List<NotificationInfo> GetNotifications() 
+    public async Task<List<NotificationInfo>> GetNotificationsAsync() 
     {
         List<NotificationInfo> lst = new List<NotificationInfo>();
         string sJson = string.Empty;
