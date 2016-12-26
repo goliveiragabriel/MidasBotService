@@ -25,6 +25,9 @@ using System.Web;
 [Serializable]
 public class EmployeeDialog : LuisDialog<object> 
 {
+
+    public const string Entity_Date = "builtin.alarm.start_date";
+
     public EmployeeDialog () //: base(new LuisServiceHost((new LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01","43f83a53d85144409c50edeedc8b9a9b"))))
     {
       
@@ -99,12 +102,14 @@ public class EmployeeDialog : LuisDialog<object>
         if(result.Entities != null && result.Entities.Count > 0) 
         {
             string results = result.Entities[0].Entity;
-            DateTime date = DateTime.MinValue; 
-            if ( result.Entities.Count > 1) 
+            EntityRecommendation date;            
+            if (!result.TryFindEntity(Entity_Alarm_Start_Date, out date))
             {
-                DateTime.TryParse(result.Entities[1].Entity, out date);
+                date = new EntityRecommendation(type: Entity_Date) { Entity = string.Empty };
             }
-            await context.PostAsync(await Notification.GetByEmployeeAndDate(results, date));
+            var parser = new Chronic.Parser();
+            var span = parser.Parse(date.Entity);
+            await context.PostAsync(await Notification.GetByEmployeeAndDate(results, span.Value));
         }
         else 
         {
