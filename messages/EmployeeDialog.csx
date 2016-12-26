@@ -105,7 +105,7 @@ public class EmployeeDialog : LuisDialog<object>
             EntityRecommendation date;            
             if (!result.TryFindEntity(Entity_Date, out date))
             {
-                date = new EntityRecommendation(type: Entity_Date) { Entity = string.Empty };
+                date = new EntityRecommendation(type: Entity_Date) { Entity = DateTime.Now.Date.ToString("dd/MM/yyyy") };
             }
             var parser = new Chronic.Parser();
             var span = parser.Parse(date.Entity);
