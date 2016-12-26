@@ -1,5 +1,6 @@
 #load "Employee.csx"
 #load "Ramal.csx"
+#load "Notification.csx"
 
 using System;
 using System.Net;
@@ -98,7 +99,7 @@ public class EmployeeDialog : LuisDialog<object>
         if(result.Entities != null && result.Entities.Count > 0) 
         {
             string results = result.Entities[0].Entity;
-            DateTime? date = DateTime.MinValue; 
+            DateTime date = DateTime.MinValue; 
             DateTime.TryParse(result.Entities[1].Entity, out date);
             await context.PostAsync(await Notification.GetByEmployeeAndDate(results, date));
         }
