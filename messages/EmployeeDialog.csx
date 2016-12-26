@@ -103,13 +103,14 @@ public class EmployeeDialog : LuisDialog<object>
         {
             string results = result.Entities[0].Entity;
             EntityRecommendation date;            
-            if (!result.TryFindEntity(Entity_Alarm_Start_Date, out date))
+            if (!result.TryFindEntity(Entity_Date, out date))
             {
                 date = new EntityRecommendation(type: Entity_Date) { Entity = string.Empty };
             }
             var parser = new Chronic.Parser();
             var span = parser.Parse(date.Entity);
-            await context.PostAsync(await Notification.GetByEmployeeAndDate(results, span.Value));
+            var when = span.Start ?? span.End;
+            await context.PostAsync(await Notification.GetByEmployeeAndDate(results, when.Value));
         }
         else 
         {
