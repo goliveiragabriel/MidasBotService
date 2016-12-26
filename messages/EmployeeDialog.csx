@@ -92,6 +92,23 @@ public class EmployeeDialog : LuisDialog<object>
         context.Wait(MessageReceived);
     }
 
+    [LuisIntent("GetNotification")]
+    public async Task GetNotification(IDialogContext context, LuisResult result) 
+    {
+        if(result.Entities != null && result.Entities.Count > 0) 
+        {
+            string results = result.Entities[0].Entity;
+            DateTime? date = DateTime.MinValue; 
+            DateTime.TryParse(result.Entities[1].Entity, out date);
+            await context.PostAsync(await Notification.GetByEmployeeAndDate(results, date));
+        }
+        else 
+        {
+            await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse. :(");
+        }        
+        context.Wait(MessageReceived);
+    }
+
     [LuisIntent("None")]
     public async Task None(IDialogContext context, LuisResult result) 
     {
