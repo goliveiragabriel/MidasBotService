@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading;
 using Newtonsoft.Json;
 using Autofac;
+using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Builder.Luis;
@@ -28,9 +29,9 @@ public class EmployeeDialog : LuisDialog<object>
 
     public const string Entity_Date = "builtin.datetime.date";
 
-    public EmployeeDialog () //: base(new LuisServiceHost((new LuisModel("3ca36565-7dab-4db1-960d-c4fbdb13cb01","43f83a53d85144409c50edeedc8b9a9b"))))
+    public EmployeeDialog (TraceWriter log)
     {
-      
+        this.log = log;
     }
 
     [LuisIntent("DaysInCompany")]
@@ -107,6 +108,7 @@ public class EmployeeDialog : LuisDialog<object>
             {
                 date = new EntityRecommendation(type: Entity_Date) { Entity = DateTime.Now.Date.ToString("dd/MM/yyyy") };
             }
+            log.Info($"" + when.Value);
             var parser = new Chronic.Parser();
             var span = parser.Parse(date.Entity);
             var when = span.Start ?? span.End;
