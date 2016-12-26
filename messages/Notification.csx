@@ -19,7 +19,7 @@ class Notification
         {
             return string.Format("Infelizmente não temos nenhuma novidade do colaborador {0} para o dia {1}", name, date.ToString("dd/MM/yyyy")); 
         }
-        notificationInfo = results.Last();
+        NotificationInfo notificationInfo = results.Last();
         return string.Format("{0} - {1}", notificationInfo.Text, date.ToString("dd/MM/yyyy"));
     }
 }
