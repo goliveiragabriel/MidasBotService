@@ -113,7 +113,7 @@ public class EmployeeDialog : LuisDialog<object>
             var parser = new Chronic.Parser();
             var span = parser.Parse(date.Entity);
             var when = span.Start ?? span.End;
-            log.Info($date.Entity);
+            log.Info(date.Entity);
             await context.PostAsync(await Notification.GetByEmployeeAndDate(results, when.Value));
         }
         else 
