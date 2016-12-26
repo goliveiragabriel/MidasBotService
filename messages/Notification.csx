@@ -14,7 +14,7 @@ class Notification
     {
         NotificationRepository repository = new NotificationRepository();
         List<NotificationInfo> lst = await repository.GetNotificationsAsync();
-        var results = lst.Where(p => p.Text.ToLower().Contains(name.ToLower()) && (date == DateTime.MinValue || p.CreatedDate.Date == date.Date ) );
+        var results = lst.Where(p => p.Text.Split(' ').ToList().Any( x => x.ToLower() == name.ToLower()) && (date == DateTime.MinValue || p.CreatedDate.Date == date.Date ) );
         if (results == null || !results.Any() ) 
         {
             return string.Format("Infelizmente não temos nenhuma novidade do colaborador {0} para o dia {1}", name, date.ToString("dd/MM/yyyy")); 
