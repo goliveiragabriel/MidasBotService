@@ -100,7 +100,10 @@ public class EmployeeDialog : LuisDialog<object>
         {
             string results = result.Entities[0].Entity;
             DateTime date = DateTime.MinValue; 
-            DateTime.TryParse(result.Entities[1].Entity, out date);
+            if ( result.Entities.Count > 1) 
+            {
+                DateTime.TryParse(result.Entities[1].Entity, out date);
+            }
             await context.PostAsync(await Notification.GetByEmployeeAndDate(results, date));
         }
         else 
