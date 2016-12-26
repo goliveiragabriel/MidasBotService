@@ -29,6 +29,8 @@ public class EmployeeDialog : LuisDialog<object>
 
     public const string Entity_Date = "builtin.datetime.date";
 
+    private TraceWriter log { get; private set;}
+
     public EmployeeDialog (TraceWriter log)
     {
         this.log = log;
