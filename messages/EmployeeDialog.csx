@@ -27,8 +27,8 @@ using System.Web;
 public class EmployeeDialog : LuisDialog<object> 
 {
 
-    public const string Entity_Date = "time";   
-    public const string Entity_Name = "name";   
+    public const string Entity_Date = "Time";   
+    public const string Entity_Name = "Employee";   
 
     public EmployeeDialog ()
     {
