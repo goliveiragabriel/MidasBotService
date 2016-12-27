@@ -17,7 +17,7 @@ public class TranslatorAuthenticator
         string clientID = "midasbottranslator_2016";
         string clientSecret = "Wti/hf/WYYHlOeqlCW377tQyF97KE/qFBURCRQQWqSg=";
         string strTranslatorAccessURI = "https://datamarket.accesscontrol.windows.net/v2/OAuth2-13";
-        string strRequestDetails = string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}&scope=http://api.microsofttranslator.com", HttpUtility.UrlEncode(clientID), HttpUtility.UrlEncode(clientSecret));
+        string strRequestDetails = string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}&scope=http://api.microsofttranslator.com", System.Uri.EscapeDataString(clientID), System.Uri.EscapeDataString(clientSecret));
         WebRequest webRequest = WebRequest.Create(strTranslatorAccessURI);
         webRequest.ContentType = "application/x-www-form-urlencoded";
         webRequest.Method = "POST";
