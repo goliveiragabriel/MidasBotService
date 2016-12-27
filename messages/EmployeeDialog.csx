@@ -112,9 +112,8 @@ public class EmployeeDialog : LuisDialog<object>
             {
                 date = new EntityRecommendation(type: Entity_Date) { Entity = DateTime.Now.Date.ToString("dd/MM/yyyy") };
             }
-            await context.PostAsync(this.translator.Translate(date.Entity));
             var parser = new Chronic.Parser();
-            var span = parser.Parse(date.Entity);
+            var span = parser.Parse(this.translator.Translate(date.Entity));
             var when = span.Start ?? span.End;
             await context.PostAsync(await Notification.GetByEmployeeAndDate(nameEntity.Entity, when.Value));
         }
