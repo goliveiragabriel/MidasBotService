@@ -31,8 +31,8 @@ public class TranslatorAuthenticator
         WebResponse webResponse = webRequest.GetResponse();
         System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(AdmAccessToken));
         //Get deserialized object from Stream
-        AdmAccessToken token = (AdmAccessToken)serializer.ReadObject(webResponse.GetResponseStream());
-        token = "Bearer " + token.access_token; //create the string for the http header
+        AdmAccessToken admAccessToken = (AdmAccessToken)serializer.ReadObject(webResponse.GetResponseStream());
+        token = "Bearer " + admAccessToken.access_token; //create the string for the http header
     }
 
     public string Translate(string text, string languageCode = "en") 
