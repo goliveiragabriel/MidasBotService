@@ -24,7 +24,6 @@ public class TranslatorAuthenticator
             outputStream.Write(bytes, 0, bytes.Length);
         }
         WebResponse webResponse = webRequest.GetResponse();
-        System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(AdmAccessToken));
         //Get deserialized object from Stream
         using (Stream stream = webResponse.GetResponseStream())
         {
