@@ -1,7 +1,7 @@
 #load "Employee.csx"
 #load "Ramal.csx"
 #load "Notification.csx"
-#load "TranslatorAuthenticator"
+#load "TranslatorAuthenticator.csx"
 
 using System;
 using System.Net;
