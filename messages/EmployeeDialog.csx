@@ -27,7 +27,8 @@ using System.Web;
 public class EmployeeDialog : LuisDialog<object> 
 {
 
-    public const string Entity_Date = "builtin.datetime.date";   
+    public const string Entity_Date = "time";   
+    public const string Entity_Name = "name";   
 
     public EmployeeDialog ()
     {
@@ -101,8 +102,9 @@ public class EmployeeDialog : LuisDialog<object>
     {
         if(result.Entities != null && result.Entities.Count > 0) 
         {
-            string results = result.Entities[0].Entity;
-            EntityRecommendation date;            
+            EntityRecommendation date;   
+            EntityRecommendation nameEntity;         
+            result.TryFindEntity(Entity_Name, out nameEntity);
             if (!result.TryFindEntity(Entity_Date, out date))
             {
                 date = new EntityRecommendation(type: Entity_Date) { Entity = DateTime.Now.Date.ToString("dd/MM/yyyy") };
@@ -114,7 +116,7 @@ public class EmployeeDialog : LuisDialog<object>
             {
                 await context.PostAsync(result.Entities[1].Entity);
             }
-            await context.PostAsync(await Notification.GetByEmployeeAndDate(results, when.Value));
+            await context.PostAsync(await Notification.GetByEmployeeAndDate(nameEntity.Entity, when.Value));
         }
         else 
         {
