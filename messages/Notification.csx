@@ -33,6 +33,6 @@ class Notification
             return string.Format("Infelizmente não temos nenhuma novidade para o dia {0}", date.ToString("dd/MM/yyyy")); 
         }
         string[] notifications = results.Select( p => string.Format("{0} - {1}", p.Text, p.CreatedDate.ToString("dd/MM/yyyy"))).ToArray();
-        return string.Join("\n", notifications);
+        return string.Join(System.Environment.NewLine, notifications);
     }
 }
