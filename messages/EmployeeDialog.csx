@@ -124,6 +124,28 @@ public class EmployeeDialog : LuisDialog<object>
         context.Wait(MessageReceived);
     }
 
+    [LuisIntent("AllNotifications")]
+    public async Task GetNotification(IDialogContext context, LuisResult result) 
+    {
+        if(result.Entities != null && result.Entities.Count > 0) 
+        {
+            EntityRecommendation date;   
+            if (!result.TryFindEntity(Entity_Date, out date))
+            {
+                date = new EntityRecommendation(type: Entity_Date) { Entity = DateTime.Now.Date.ToString("dd/MM/yyyy") };
+            }
+            var parser = new Chronic.Parser();
+            var span = parser.Parse(this.translator.Translate(date.Entity));
+            var when = span.Start ?? span.End;
+            await context.PostAsync(await Notification.GetByDate(when.Value));
+        }
+        else 
+        {
+            await context.PostAsync("Infelizmente, ainda não consigo entender o que você disse. :(");
+        }        
+        context.Wait(MessageReceived);
+    }
+
     [LuisIntent("None")]
     public async Task None(IDialogContext context, LuisResult result) 
     {
