@@ -1,6 +1,7 @@
 #load "Employee.csx"
 #load "Ramal.csx"
 #load "Notification.csx"
+#load "TranslatorAuthenticator"
 
 using System;
 using System.Net;
@@ -29,9 +30,11 @@ public class EmployeeDialog : LuisDialog<object>
 
     public const string Entity_Date = "Time";   
     public const string Entity_Name = "Employee";   
+    private TranslatorAuthenticator translator;
 
     public EmployeeDialog ()
     {
+        this.translator = new TranslatorAuthenticator();
     }
 
     [LuisIntent("DaysInCompany")]
@@ -105,11 +108,11 @@ public class EmployeeDialog : LuisDialog<object>
             EntityRecommendation date;   
             EntityRecommendation nameEntity;         
             result.TryFindEntity(Entity_Name, out nameEntity);
-            if (!result.TryFindEntity("builtin.datetime.date", out date))
+            if (!result.TryFindEntity(Entity_Date, out date))
             {
                 date = new EntityRecommendation(type: Entity_Date) { Entity = DateTime.Now.Date.ToString("dd/MM/yyyy") };
             }
-            await context.PostAsync(date.Entity);
+            await context.PostAsync(this.translator.Translate(data.Entity));
             var parser = new Chronic.Parser();
             var span = parser.Parse(date.Entity);
             var when = span.Start ?? span.End;
