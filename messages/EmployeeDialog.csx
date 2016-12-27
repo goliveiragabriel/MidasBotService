@@ -112,7 +112,7 @@ public class EmployeeDialog : LuisDialog<object>
             var when = span.Start ?? span.End;
             if(result.Entities.Count > 1) 
             {
-                await context.PostAsync(result.Entitie[1].Entity);
+                await context.PostAsync(result.Entities[1].Entity);
             }
             await context.PostAsync(await Notification.GetByEmployeeAndDate(results, when.Value));
         }
