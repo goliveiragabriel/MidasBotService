@@ -30,9 +30,9 @@ class Notification
         var results = lst.Where(p => date == DateTime.MinValue || p.CreatedDate.Date == date.Date );
         if (results == null || !results.Any() ) 
         {
-            return string.Format("Infelizmente não temos nenhuma novidade do colaborador {0} para o dia {1}", name, date.ToString("dd/MM/yyyy")); 
+            return string.Format("Infelizmente não temos nenhuma novidade para o dia {0}", date.ToString("dd/MM/yyyy")); 
         }
-        string[] notifications = results.Select( p => string.Format("{0} - {1}", p.Text, p.CreatedDate.ToString("dd/MM/yyyy")));
+        string[] notifications = results.Select( p => string.Format("{0} - {1}", p.Text, p.CreatedDate.ToString("dd/MM/yyyy"))).ToArray();
         return string.Join("\n", notifications);
     }
 }

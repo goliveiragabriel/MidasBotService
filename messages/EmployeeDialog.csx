@@ -125,7 +125,7 @@ public class EmployeeDialog : LuisDialog<object>
     }
 
     [LuisIntent("AllNotifications")]
-    public async Task GetNotification(IDialogContext context, LuisResult result) 
+    public async Task AllNotifications(IDialogContext context, LuisResult result) 
     {
         if(result.Entities != null && result.Entities.Count > 0) 
         {
