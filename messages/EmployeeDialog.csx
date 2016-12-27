@@ -105,15 +105,14 @@ public class EmployeeDialog : LuisDialog<object>
             EntityRecommendation date;   
             EntityRecommendation nameEntity;         
             result.TryFindEntity(Entity_Name, out nameEntity);
-            if (!result.TryFindEntity(Entity_Date, out date))
+            if (!result.TryFindEntity("builtin.datetime.date", out date))
             {
                 date = new EntityRecommendation(type: Entity_Date) { Entity = DateTime.Now.Date.ToString("dd/MM/yyyy") };
             }
+            await context.PostAsync(date.Entity);
             var parser = new Chronic.Parser();
             var span = parser.Parse(date.Entity);
             var when = span.Start ?? span.End;
-            //await context.PostAsync(nameEntity.Entity);
-            await context.PostAsync(date.Entity);
             await context.PostAsync(await Notification.GetByEmployeeAndDate(nameEntity.Entity, when.Value));
         }
         else 
