@@ -27,13 +27,10 @@ using System.Web;
 public class EmployeeDialog : LuisDialog<object> 
 {
 
-    public const string Entity_Date = "builtin.datetime.date";
+    public const string Entity_Date = "builtin.datetime.date";   
 
-    private TraceWriter log { get; set;}
-
-    public EmployeeDialog (TraceWriter log)
+    public EmployeeDialog ()
     {
-        this.log = log;
     }
 
     [LuisIntent("DaysInCompany")]
