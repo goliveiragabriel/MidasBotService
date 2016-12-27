@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+[Serializable]
 public class TranslatorAuthenticator 
 {
     public readonly string token = string.Empty;
