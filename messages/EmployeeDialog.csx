@@ -157,7 +157,7 @@ public class EmployeeDialog : LuisDialog<object>
     public async Task FarewellGreetings(IDialogContext context, LuisResult result) 
     {
         string word = string.Empty;
-        if(DateTime.Now.Hour >= 6 DateTime.Now.Hour < 12 ) 
+        if(DateTime.Now.Hour >= 6 && DateTime.Now.Hour < 12 ) 
         {
             word = "bom dia";
         }
