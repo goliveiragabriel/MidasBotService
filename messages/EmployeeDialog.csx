@@ -153,6 +153,26 @@ public class EmployeeDialog : LuisDialog<object>
         context.Wait(MessageReceived);
     } 
 
+    [LuisIntent("FarewellGreetings")]
+    public async Task FarewellGreetings(IDialogContext context, LuisResult result) 
+    {
+        string word = string.Empty;
+        if(DateTime.Now.Hour >= 6 DateTime.Now.Hour < 12 ) 
+        {
+            word = "bom dia";
+        }
+        else if ( DateTime.Now < 18 ) 
+        {
+            word = "boa tarde";
+        }
+        else 
+        {
+            word = "boa noite";
+        }
+        await context.PostAsync("Até logo, " + word);
+        context.Wait(MessageReceived);
+    } 
+
     [LuisIntent("None")]
     public async Task None(IDialogContext context, LuisResult result) 
     {
