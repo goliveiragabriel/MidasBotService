@@ -161,7 +161,7 @@ public class EmployeeDialog : LuisDialog<object>
         {
             word = "bom dia";
         }
-        else if ( DateTime.Now < 18 ) 
+        else if ( DateTime.Now.Hour < 18 ) 
         {
             word = "boa tarde";
         }
