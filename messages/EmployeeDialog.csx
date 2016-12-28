@@ -146,6 +146,13 @@ public class EmployeeDialog : LuisDialog<object>
         context.Wait(MessageReceived);
     }
 
+    [LuisIntent("Greetings")]
+    public async Task Greetings(IDialogContext context, LuisResult result) 
+    {
+        await context.PostAsync("Olá, como eu posso te ajudar?");
+        context.Wait(MessageReceived);
+    } 
+
     [LuisIntent("None")]
     public async Task None(IDialogContext context, LuisResult result) 
     {

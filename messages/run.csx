@@ -45,12 +45,12 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                         var newMembers = update.MembersAdded?.Where(t => t.Id != activity.Recipient.Id);
                         foreach (var newMember in newMembers)
                         {
-                            reply.Text = "Bão? ";
+                            reply.Text = "Olá ";
                             if (!string.IsNullOrEmpty(newMember.Name))
                             {
                                 reply.Text += $" {newMember.Name}";
                             }
-                            reply.Text += "!";
+                            reply.Text += "! Eu sou o robot Midas, estou aqui para ajudá-lo sobre as novidades da empresa, ramais, agendamentos, etc. Espero ser útil e que você possa me ajudar a ficar mais inteligente no futuro.";
                             await client.Conversations.ReplyToActivityAsync(reply);
                         }
                     }
