@@ -159,17 +159,17 @@ public class EmployeeDialog : LuisDialog<object>
         string word = string.Empty;
         if(DateTime.Now.Hour >= 6 && DateTime.Now.Hour < 12 ) 
         {
-            word = "bom dia";
+            word = "um bom dia";
         }
         else if ( DateTime.Now.Hour < 18 ) 
         {
-            word = "boa tarde";
+            word = "uma boa tarde";
         }
         else 
         {
-            word = "boa noite";
+            word = "uma boa noite";
         }
-        await context.PostAsync("Até logo, " + word);
+        await context.PostAsync("Até logo, tenha " + word);
         context.Wait(MessageReceived);
     } 
 
