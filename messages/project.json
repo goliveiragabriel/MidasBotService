@@ -13,7 +13,8 @@
         "Microsoft.AspNet.WebApi.WebHost" : "5.2.3",
         "Microsoft.Bot.Builder" : "3.3.3",
         "Microsoft.WindowsAzure.ConfigurationManager" : "3.2.3",
-        "System.Xml.XmlSerializer" : "4.3.0"
+        "System.Xml.XmlSerializer": "4.3.0",
+        "Microsoft.Rest.ClientRuntime" :  "3.0.3"
       }
     }
    }

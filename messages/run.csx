@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System.Web;
 
 public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 {
@@ -34,7 +35,30 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
             switch (activity.GetActivityType())
             {
                 case ActivityTypes.Message:
-                    await Conversation.SendAsync(activity, () => new EmployeeDialog());
+                    if(activity.Text.TrimStart(' ').ToLower() == "login")
+                    {
+                        var connectorClient = new ConnectorClient(new Uri(activity.ServiceUrl));
+                        Activity replyToConversation = activity.CreateReply();
+                        replyToConversation.Recipient = activity.From;
+                        replyToConversation.Type = "message";
+                        replyToConversation.Attachments = new List<Attachment>();
+                        List<CardAction> cardButtons = new List<CardAction>();
+                        CardAction plButton = new CardAction()
+                        {
+                            Value = $"https://midasbr.sharepoint.com/sites/Home/Login?userid=gabriel.goncalves%40midassolutions.com.br",//userid={System.Uri.EscapeDataString(activity.From.Id)}",
+                            Type = "signin",
+                            Title = "Conectar"
+                        };
+                        cardButtons.Add(plButton);
+                        SigninCard plCard = new SigninCard("Por favor, acesse o Office 365", new List<CardAction>() { plButton });
+                        Attachment plAttachment = plCard.ToAttachment();
+                        replyToConversation.Attachments.Add(plAttachment);
+                        var reply = await connectorClient.Conversations.SendToConversationAsync(replyToConversation);
+                    }
+                    else
+                    {
+                        await Conversation.SendAsync(activity, () => new EmployeeDialog());
+                    }
                     break;
                 case ActivityTypes.ConversationUpdate:
                     var client = new ConnectorClient(new Uri(activity.ServiceUrl));
