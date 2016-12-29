@@ -45,7 +45,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                         List<CardAction> cardButtons = new List<CardAction>();
                         CardAction plButton = new CardAction()
                         {
-                            Value = $"{System.Configuration.ConfigurationManager.AppSettings["AppWebSite"]}/Home/Login?userid={System.Uri.EscapeDataString(activity.From.Id)}",
+                            Value = $"http://midasbotapi20161226074422.azurewebsites.net/Home/Login?userid=" + System.Uri.EscapeDataString(activity.From.Id),
                             Type = "signin",
                             Title = "Acesse aqui"
                         };
