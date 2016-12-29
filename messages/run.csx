@@ -45,7 +45,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                         List<CardAction> cardButtons = new List<CardAction>();
                         CardAction plButton = new CardAction()
                         {
-                            Value = $"https://midasbr.sharepoint.com/sites/Home/Login?userid=gabriel.goncalves%40midassolutions.com.br",//userid={System.Uri.EscapeDataString(activity.From.Id)}",
+                            Value = $"https://midasbr.sharepoint.com/sites/Home/Login?userid={System.Uri.EscapeDataString(activity.From.Id)}",
                             Type = "signin",
                             Title = "Conectar"
                         };
