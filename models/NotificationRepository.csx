@@ -17,6 +17,7 @@ public class NotificationRepository
         string sJson = string.Empty;
         using (WebClient client = new WebClient()) 
         {
+            client.Encoding = System.Text.Encoding.UTF8;
             sJson = await client.DownloadStringTaskAsync(url).ConfigureAwait(false);
         }
         try
