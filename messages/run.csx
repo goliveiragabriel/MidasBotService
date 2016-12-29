@@ -45,9 +45,9 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                         List<CardAction> cardButtons = new List<CardAction>();
                         CardAction plButton = new CardAction()
                         {
-                            Value = $"http://localhost:50818/Home/Login?userid={System.Uri.EscapeDataString(activity.From.Id)}", //$"http://midasbotapi20161226074422.azurewebsites.net/Home/Login?userid={System.Uri.EscapeDataString(activity.From.Id)}",
+                            Value = $"http://localhost:50818/Home/Login?userid=" + System.Uri.EscapeDataString(activity.From.Id),
                             Type = "signin",
-                            Title = "Conectar"
+                            Title = "Login aqui"
                         };
                         cardButtons.Add(plButton);
                         SigninCard plCard = new SigninCard("Por favor, acesse o Office 365", new List<CardAction>() { plButton });
