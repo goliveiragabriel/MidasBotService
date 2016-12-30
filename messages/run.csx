@@ -69,7 +69,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                         var newMembers = update.MembersAdded?.Where(t => t.Id != activity.Recipient.Id);
                         foreach (var newMember in newMembers)
                         {
-                            reply.Text = "Olá ";
+                            reply.Text = "Olá";
                             if (!string.IsNullOrEmpty(newMember.Name))
                             {
                                 reply.Text += $" {newMember.Name}";
