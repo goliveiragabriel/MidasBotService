@@ -35,7 +35,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
             switch (activity.GetActivityType())
             {
                 case ActivityTypes.Message:
-                    if(activity.Text.TrimStart(' ').ToLower() == "login")
+                    /*if(activity.Text.TrimStart(' ').ToLower() == "login")
                     {
                         var connectorClient = new ConnectorClient(new Uri(activity.ServiceUrl));
                         Activity replyToConversation = activity.CreateReply();
@@ -58,7 +58,8 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     else
                     {
                         await Conversation.SendAsync(activity, () => new EmployeeDialog());
-                    }
+                    }*/
+                    await Conversation.SendAsync(activity, () => new EmployeeDialog());
                     break;
                 case ActivityTypes.ConversationUpdate:
                     var client = new ConnectorClient(new Uri(activity.ServiceUrl));
