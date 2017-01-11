@@ -35,34 +35,12 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
             // one of these will have an interface and process it
             switch (activity.GetActivityType())
             {
-                case ActivityTypes.Message:
-                    /*if(activity.Text.TrimStart(' ').ToLower() == "login")
-                    {
-                        var connectorClient = new ConnectorClient(new Uri(activity.ServiceUrl));
-                        Activity replyToConversation = activity.CreateReply();
-                        replyToConversation.Recipient = activity.From;
-                        replyToConversation.Type = "message";
-                        replyToConversation.Attachments = new List<Attachment>();
-                        List<CardAction> cardButtons = new List<CardAction>();
-                        CardAction plButton = new CardAction()
-                        {
-                            Value = $"http://midasbotapi20161226074422.azurewebsites.net/Home/Login?userid=" + System.Uri.EscapeDataString(activity.From.Id),
-                            Type = "signin",
-                            Title = "Acesse aqui"
-                        };
-                        cardButtons.Add(plButton);
-                        SigninCard plCard = new SigninCard("Por favor, acesse o Office 365", new List<CardAction>() { plButton });
-                        Attachment plAttachment = plCard.ToAttachment();
-                        replyToConversation.Attachments.Add(plAttachment);
-                        var reply = await connectorClient.Conversations.SendToConversationAsync(replyToConversation);
-                    }
-                    else
-                    {
-                        await Conversation.SendAsync(activity, () => new EmployeeDialog());
-                    }*/
+                case ActivityTypes.Message: 
+                {
                     log.Info(activity.Text);
                     await Conversation.SendAsync(activity, () => new EmployeeDialog());
                     break;
+                }
                 case ActivityTypes.ConversationUpdate:
                     var client = new ConnectorClient(new Uri(activity.ServiceUrl));
                     IConversationUpdateActivity update = activity;
