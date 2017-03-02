@@ -55,7 +55,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                             {
                                 reply.Text += $" {newMember.Name}";
                             }
-                            reply.Text += "! Eu sou o robot Midas, estou aqui para ajudá-lo sobre as novidades da empresa, ramais, agendamentos, etc. Espero ser útil e que você possa me ajudar a ficar mais inteligente no futuro.";
+                            reply.Text += "! Eu sou o robô Midas, estou aqui para ajudá-lo sobre as novidades da empresa, ramais, agendamentos, etc. Espero ser útil e que você possa me ajudar a ficar mais inteligente no futuro.";
                             await client.Conversations.ReplyToActivityAsync(reply);
                         }
                     }
