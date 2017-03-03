@@ -37,7 +37,6 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
             {
                 case ActivityTypes.Message: 
                 {
-                    log.Info(activity.Text);
                     await Conversation.SendAsync(activity, () => new EmployeeDialog());
                     break;
                 }
